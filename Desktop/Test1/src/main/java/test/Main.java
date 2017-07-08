@@ -8,7 +8,7 @@ public class Main {
     public static void main(String[] args) throws IOException {
         Date date = new Date();
         Search search = new Search();
-        search.test(false);//Если делаете true, то в консоли видите список из 10 слов, если false то не видите
+        search.test(true);//Если делаете true, то в консоли видите список из 10 слов, если false то не видите
         System.out.println("\n\n\n\n\n"+ (new Date().getTime()-date.getTime()));
     }
 

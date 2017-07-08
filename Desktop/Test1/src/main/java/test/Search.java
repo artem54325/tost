@@ -50,18 +50,16 @@ public class Search {
         for (int i=0;i<list.size();i++){
             if (sortList.size()<10){
                 sortList.add(list.get(i));
-                if (bottom.getNumber() > list.get(i).getNumber())
+                if (bottom.compareTo(list.get(i))>0)
                     bottom = list.get(i);//Находит минимум из 1 десяти!
             }else{
-                if (bottom.getNumber()>=list.get(i).getNumber())
+                if (bottom.compareTo(list.get(i))<0)
                     continue;
                 Collections.sort(sortList);
-                if (sortList.get(9).compareTo(list.get(i))>0)//sortList.get(9).getNumber()<list.get(i).getNumber()||(sortList.get(9).getNumber()==list.get(i).getNumber()&&sortList.get(9).getWord().compareTo(list.get(i).getWord())>0)
+                if (sortList.get(9).compareTo(list.get(i))>0)
                     sortList.set(9, list.get(i));
                 for (int a=0;a<sortList.size()-1;a++){
-                    if (sortList.get(a).compareTo(list.get(i))>0&&sortList.get(a+1).compareTo(list.get(i))<0){//&&sortList.get(a+1).getNumber()>list.get(i).getNumber()
-//                        (sortList.get(a).getNumber()<list.get(i).getNumber()&&sortList.get(a+1).getNumber()>list.get(i).getNumber())||
-//                                (sortList.get(a).getWord().compareTo(list.get(i).getWord())>0)
+                    if (sortList.get(a).compareTo(list.get(i))>0&&sortList.get(a+1).compareTo(list.get(i))<0){
                         sortList.set(a, list.get(i));
                         bottom=sortList.get(0);
                         break;
@@ -72,9 +70,11 @@ public class Search {
         return sortList;
     }
 
+
     private String parsText(String word){//Ищет подходящие слова, если их не находит возвращает пустой массив.
         List<StringIntObj> list = sort(tree.search(word));
 //        List<StringIntObj> list = (tree.search(word));
+        //Если использовать в сортировки TreeSet то время увеличиться до 25 секунд. Так что нужно дальше думать!
         StringBuffer buffer = new StringBuffer();
         if (list == null||list.size()==0)
             return null;
