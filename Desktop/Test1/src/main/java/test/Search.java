@@ -53,27 +53,16 @@ public class Search {
                 if (bottom.getNumber() > list.get(i).getNumber())
                     bottom = list.get(i);//Находит минимум из 1 десяти!
             }else{
-//                if (bottom.getNumber()<=list.get(i).getNumber()){
-//                    if (list.get(i).getWord().compareTo(bottom.getWord())>0){
-//                        for (int a=0;a<sortList.size();a++){
-////                            if (sortList.get(a).getWord().equals(bottom.getWord())){
-//                            if (sortList.get(a)==(bottom)){
-//                                sortList.set(a, list.get(i));
-//                                break;
-//                            }
-//                        }
-//
-//                    }
-//                }
-                if (bottom.getNumber()>list.get(i).getNumber())
+                if (bottom.getNumber()>=list.get(i).getNumber())
                     continue;
                 Collections.sort(sortList);
-
-                for (int a=0;i<sortList.size();a++){
-                    if ((sortList.get(a).getWord().compareTo(list.get(i).getWord())>=0&&sortList.get(a).getNumber()>list.get(i).getNumber())
-                            &&(sortList.get(a+1).getWord().compareTo(list.get(i).getWord())<=0&&sortList.get(a+1).getNumber()<list.get(i).getNumber())){
+                if (sortList.get(9).getNumber()<list.get(i).getNumber()||(sortList.get(9).getNumber()==list.get(i).getNumber()&&sortList.get(9).getWord().compareTo(list.get(i).getWord())>0))
+                    sortList.set(9, list.get(i));
+                for (int a=0;a<sortList.size()-1;a++){
+                    if (sortList.get(a).getNumber()<list.get(i).getNumber()&&sortList.get(a+1).getNumber()>list.get(i).getNumber()){//&&sortList.get(a+1).getNumber()>list.get(i).getNumber()
                         sortList.set(a, list.get(i));
                         bottom=sortList.get(0);
+                        break;
                     }
                 }
             }
@@ -82,8 +71,8 @@ public class Search {
     }
 
     private String parsText(String word){//Ищет подходящие слова, если их не находит возвращает пустой массив.
-//        List<StringIntObj> list = sort(tree.search(word));
-        List<StringIntObj> list = (tree.search(word));
+        List<StringIntObj> list = sort(tree.search(word));
+//        List<StringIntObj> list = (tree.search(word));
         StringBuffer buffer = new StringBuffer();
         if (list == null||list.size()==0)
             return null;
