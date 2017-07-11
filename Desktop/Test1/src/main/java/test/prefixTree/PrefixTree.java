@@ -6,7 +6,7 @@ import test.StringIntObj;
 import java.util.*;
 
 public class PrefixTree {
-    Map<Character, List<StringIntObj>> children = new TreeMap<>();
+    Map<Character, List<StringIntObj>> children = new HashMap<>();
 
     public void put(String text){
         Character character = text.toCharArray()[0];

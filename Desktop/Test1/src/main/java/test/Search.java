@@ -35,7 +35,7 @@ public class Search {
             if (see){
                 String list = parsText(text.get(i));
                 if (list!=null)
-                    System.out.println(list);
+                    System.out.println(text.get(i) + " " +list);
             }else{
                 parsText(text.get(i));
             }
