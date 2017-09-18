@@ -124,6 +124,7 @@ public class UsersFragment extends Fragment {
         }else{
             url=this.url + "/users";
         }
+        System.out.println(url + " qwerrr");
         request = new Request.Builder()
                 .url(url)
                 .build();
@@ -214,8 +215,6 @@ public class UsersFragment extends Fragment {
             final View item = inflater.inflate(R.layout.el_card, this.layout, false);
             if (!(list.get(i).getUrlImage() == null))
                 new DowlandImage((ImageView)item.findViewById(R.id.tag_url_image)).execute(list.get(i).getUrlImage());//((ImageView)item.findViewById(R.id.tag_url_image)
-//            else
-//                ((ImageView)item.findViewById(R.id.tag_url_image)).setImageURI(R.drawable.ic_user_pic);
             ((TextView)item.findViewById(R.id.tag_name)).setText(list.get(i).getTag());
             ((TextView)item.findViewById(R.id.tag_question)).setText(list.get(i).getQuestion());
 //            ((TextView)item.findViewById(R.id.tag_subscriptions)).setText("Подписаться "+list.get(i).getSubscribeNumber());
