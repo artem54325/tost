@@ -205,7 +205,7 @@ public class UserAndTagActivity extends AppCompatActivity
                         adapter.addFragment(new QuestionFragment(urlGet, QuestionFragment.EnumQuestion.QUESTION),"Новые вопросы");
                         adapter.addFragment(new QuestionFragment(urlGet, QuestionFragment.EnumQuestion.InterestQuestions),"Интересные");
                         adapter.addFragment(new QuestionFragment(urlGet, QuestionFragment.EnumQuestion.QuestionsWoAnswer),"Без ответа");
-                        adapter.addFragment(new UsersFragment(urlGet),"Подписчики");
+                        adapter.addFragment(new UsersFragment(urlGet, QuestionFragment.EnumQuestion.QuestionsWoAnswer),"Подписчики");
                         viewPager.setAdapter(adapter);
                         tabLayout.setupWithViewPager(viewPager);
                     }

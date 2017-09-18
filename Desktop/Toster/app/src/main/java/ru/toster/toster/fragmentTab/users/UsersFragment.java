@@ -54,7 +54,10 @@ public class UsersFragment extends Fragment {
     private LayoutInflater inflater;
     public static final String TAG = "UsersFragment";
 
-
+    public UsersFragment(String url, QuestionFragment.EnumQuestion enumQuestion) {
+        this.url = url;
+        this.enumQuestion = enumQuestion;
+    }
 
     public UsersFragment(QuestionFragment.EnumQuestion questionsLatest) {
         this.enumQuestion = questionsLatest;
@@ -115,16 +118,13 @@ public class UsersFragment extends Fragment {
 
     private synchronized void getHttp(QuestionFragment.EnumQuestion Users) {
         String url = null;
-        if (enumQuestion!=null) {
-            switch (enumQuestion) {
-                case Users:
-                    url = "https://toster.ru/users/main";//https://toster.ru/tags/by_questions?page=2
-                    break;
-            }
-        }else{
-            url=this.url + "/users";
+        switch (enumQuestion) {
+            case Users:
+                url = "https://toster.ru/users/main";//https://toster.ru/tags/by_questions?page=2
+                break;
+            default:
+                url=this.url + "/users";
         }
-        System.out.println(url + " qwerrr");
         request = new Request.Builder()
                 .url(url)
                 .build();
@@ -137,12 +137,12 @@ public class UsersFragment extends Fragment {
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
-                listCard = (ParsingPage.parsAllUsers(response.body().string()));
+                listCard = ParsingPage.parsAllUsers(response.body().string());
+                System.out.println("\n\n" + listCard.size());
                 getActivity().runOnUiThread(new Runnable() {
                     @RequiresApi(api = Build.VERSION_CODES.M)
                     @Override
                     public void run() {
-//                        layout.removeAllViews();
                         views(listCard);
                     }
                 });
